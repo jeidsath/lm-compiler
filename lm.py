@@ -5,6 +5,8 @@ import argparse
 from functioneer import Functioneer
 from output import Outputer
 from commenter import Commenter
+from iffer import Iffer
+import util
 
 
 def main():
@@ -13,11 +15,20 @@ def main():
     # strip comments
     text = Commenter(load(args.file)).comments_removed()
 
+    text = util.filter_lines(text)
+
+    # replace if statements
+    iffer = Iffer(text)
+    ifs = 0
+    iffer.parse()
+
+    text = iffer.lines
+
     # replace functions
     functioneer = Functioneer(text)
     functioneer.get_functions()
 
-    outer = Outputer(functioneer)
+    outer = Outputer(functioneer, iffer)
     print outer.out()
 
 

@@ -2,6 +2,37 @@
 def init 0
   LDC 5 # load 5
   LDC 7 # load 7
+  LDC 0
+
+  if:
+    LDC 5
+    LDC 5
+    LDC 1
+
+    if:
+      LDC 2
+      LDC 2
+    else:
+      LDC 3
+      LDC 3
+    fi
+
+  else:
+    LDC 4
+    LDC 4
+  fi
+
+  LDC 1
+
+  if:
+    LDC 9
+    LDC 9
+  else:
+    LDC 10
+    LDC 10
+  fi
+
+
   add(2)
 
 # add 2 variables

@@ -1,7 +1,8 @@
 import re
 
 class Outputer(object):
-    def __init__(self, functioneer):
+    def __init__(self, functioneer, iffer):
+        self.iffer = iffer
         self.functioneer = functioneer
 
     def labelled_text(self):
@@ -29,8 +30,13 @@ class Outputer(object):
 
     def out(self):
         text = self.labelled_text()
+
+        for iffy in self.iffer.ifs:
+            text.extend(iffy.to_extend())
+
         while True:
             text, changed = self.replaceFn(text)
             if not changed:
                 break
+
         return "\n".join(text)
