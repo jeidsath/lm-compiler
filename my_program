@@ -1,9 +1,11 @@
+# this is my initial fn
 def init 0
-  LDC 5
-  LDC 7
+  LDC 5 # load 5
+  LDC 7 # load 7
   add(2)
 
+# add 2 variables
 def add 2
   LD 0 0
   LD 0 1
-  ADD 
+  ADD # apply the internal add operation
