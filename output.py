@@ -1,4 +1,5 @@
 import re
+import util
 
 class Outputer(object):
     def __init__(self, functioneer, iffer):
@@ -19,10 +20,13 @@ class Outputer(object):
         return lines, changed
 
     def replace(self, name, lines):
+        offset = 0
         fn_addr = -1
         for xx, ll in enumerate(lines):
             if ll == ':' + name + ':':
-                fn_addr = xx
+                fn_addr = xx - offset
+            if util.real_strip(ll) == '' or re.match(r'^:.*', ll):
+                offset += 1
         lines.remove(':' + name + ':')
         for xx, ll in enumerate(lines):
             lines[xx] = ll.replace(':' + name + ':', str(fn_addr))

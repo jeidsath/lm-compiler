@@ -32,7 +32,8 @@ class Funct(object):
         self.parse_calls()
         out = self.lines
         out.insert(0, ':' + self.name + ':')
-        out.append('RTN')
+        if self.name != '__main__':
+            out.append('RTN')
         return "\n".join(out)
 
     def __repr__(self):
@@ -61,7 +62,7 @@ class Functioneer(object):
         self.fns = []
 
     def get_functions(self):
-        fn = None
+        fn = Funct(name='__main__', args=0, lines=[])
         for ll in self.lines:
             if ll[0:3] == 'def':
                 if fn:

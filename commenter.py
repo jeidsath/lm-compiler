@@ -8,6 +8,6 @@ class Commenter(object):
         out = []
 
         for line in self.text:
-            out.append(re.sub('#.*', '', line))
+            out.append(re.sub('#(.*)', r';\1', line))
 
         return out

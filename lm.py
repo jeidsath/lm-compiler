@@ -15,7 +15,7 @@ def main():
     # strip comments
     text = Commenter(load(args.file)).comments_removed()
 
-    text = util.filter_lines(text)
+    #text = util.filter_lines(text)
 
     # replace if statements
     iffer = Iffer(text)

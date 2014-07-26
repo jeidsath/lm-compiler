@@ -1,5 +1,3 @@
-import util
-
 class If(object):
     def __init__(self, number):
         self.number = number
@@ -96,6 +94,6 @@ class Iffer(object):
             if len(newIffer.ifs) > 0:
                 self.counter += len(newIffer.ifs)
                 self.ifs.extend(newIffer.ifs)
-                iffy.top = util.filter_lines(newIffer.lines)
+                iffy.top = newIffer.lines
 
         self.lines = out
