@@ -12,7 +12,7 @@ class Funct(object):
         self.lines.append(line)
 
     def is_fn_call(self, line):
-        return re.match(r'.*\(\).*', line) is not None
+        return re.match(r'(.*)\((.*)\)', line) is not None
 
     def parse_calls(self):
         """Transform any function calls like do_x(arg1, arg2) into assembly

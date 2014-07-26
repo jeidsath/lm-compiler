@@ -1,0 +1,9 @@
+def init 0
+  LDC 5
+  LDC 7
+  add(2)
+
+def add 2
+  LD 0 0
+  LD 0 1
+  ADD 
