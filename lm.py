@@ -21,6 +21,8 @@ def main():
 
     if args.macrosFile:
         text = Macroer(text, args.macrosFile).replaceMacros()
+    else:
+        text = Macroer(text, None).replaceMacros()
 
     text2 = []
     for ll in text:

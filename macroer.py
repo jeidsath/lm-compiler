@@ -12,8 +12,11 @@ class Macroer(object):
         self.macros = []
 
     def loadMacros(self):
-        with open(self.macrosFile, 'r') as ff:
-            text = ff.readlines()
+        if not self.macrosFile:
+            text = ""
+        else:
+            with open(self.macrosFile, 'r') as ff:
+                text = ff.readlines()
 
         macro = []
         for ll in text:
