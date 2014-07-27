@@ -5,6 +5,7 @@ import argparse
 from functioneer import Functioneer
 from output import Outputer
 from commenter import Commenter
+from linenamer import Linenamer
 from iffer import Iffer
 import util
 
@@ -13,7 +14,11 @@ def main():
     args = parse()
 
     # strip comments
-    text = Commenter(load(args.file)).comments_removed()
+    #text = Commenter(load(args.file)).comments_removed()
+
+    text = load(args.file)
+
+    text = Linenamer(text).linesnames_changed()
 
     #text = util.filter_lines(text)
 

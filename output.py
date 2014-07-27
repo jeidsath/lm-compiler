@@ -13,7 +13,7 @@ class Outputer(object):
     def replaceFn(self, lines):
         changed = False
         for xx, ll in enumerate(lines):
-            mm = re.match(r'^:(.*):', ll)
+            mm = re.match(r'^@(.*)@', ll)
             if mm:
                 lines = self.replace(mm.group(1), lines)
                 changed = True
@@ -23,13 +23,13 @@ class Outputer(object):
         offset = 0
         fn_addr = -1
         for xx, ll in enumerate(lines):
-            if ll == ':' + name + ':':
+            if ll == '@' + name + '@':
                 fn_addr = xx - offset
-            if util.real_strip(ll) == '' or re.match(r'^:.*', ll):
+            if util.real_strip(ll) == '' or re.match(r'^@.*', ll):
                 offset += 1
-        lines.remove(':' + name + ':')
+        lines.remove('@' + name + '@')
         for xx, ll in enumerate(lines):
-            lines[xx] = ll.replace(':' + name + ':', str(fn_addr))
+            lines[xx] = ll.replace('@' + name + '@', str(fn_addr))
         return lines
 
     def out(self):

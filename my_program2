@@ -1,18 +1,20 @@
-# test test test
+; test test test
 def init 0
-  LDC 5 # load 5
-  LDC 7 # load 7
+  LDC 5 ; load 5
+  LDC 7 ; load 7
   LDC 0
-  if:
+  if
     ADD
-  else:
+  else
     SUB
   fi
 def add 2
   LD 0 0
   LD 0 1
-  ADD # apply the internal add operation
+  ADD ; apply the internal add operation
 def sub 2
   LD 0 0
   LD 0 1
-  SUB # apply the internal sub operation
+  SUB ; apply the internal sub operation
+LINENAME helloworld
+  LF helloworld

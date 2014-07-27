@@ -31,7 +31,7 @@ class Funct(object):
     def output(self):
         self.parse_calls()
         out = self.lines
-        out.insert(0, ':' + self.name + ':')
+        out.insert(0, '@' + self.name + '@')
         if self.name != '__main__':
             out.append('RTN')
         return "\n".join(out)
@@ -52,7 +52,7 @@ class FuncCall(object):
         args = sre.group(2)
         if args == "":
             args = "0"
-        return ['LDF :' + fn_name + ':', 'AP ' + args]
+        return ['LDF @' + fn_name + '@', 'AP ' + args]
 
 
 class Functioneer(object):

@@ -10,7 +10,7 @@ class If(object):
     def add_line(self, line):
         self.lines_consumed += 1
 
-        if line.strip() == 'if:':
+        if line.strip() == 'if':
             self.nested_ifs += 1
 
         if line.strip() == 'fi':
@@ -22,7 +22,7 @@ class If(object):
             return True
 
         if self.state == 'top':
-            if line.strip() == 'else:':
+            if line.strip() == 'else':
                 if self.nested_ifs == 0:
                     self.state = 'bottom'
                     return True
@@ -43,12 +43,12 @@ class If(object):
         return True
 
     def select_statement(self):
-        select = "SEL :__if_statement_{0}: :__else_statement_{0}:"
+        select = "SEL @__if_statement_{0}@ @__else_statement_{0}@"
         return select.format(self.number)
 
     def to_extend(self):
-        top_label = ':__if_statement_{0}:'.format(self.number)
-        bottom_label = ':__else_statement_{0}:'.format(self.number)
+        top_label = '@__if_statement_{0}@'.format(self.number)
+        bottom_label = '@__else_statement_{0}@'.format(self.number)
         top_code = [top_label] + self.top + ['JOIN']
         bottom_code = [bottom_label] + self.bottom + ['JOIN']
         return top_code + bottom_code
@@ -60,7 +60,7 @@ class Iffer(object):
         self.counter = counter
 
     def is_if_statement(self, ll):
-        if ll.strip() == 'if:':
+        if ll.strip() == 'if':
             return True
         else:
             return False

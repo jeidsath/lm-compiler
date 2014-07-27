@@ -1,33 +1,33 @@
-# this is my initial fn
+; this is my initial fn
 def init 0
-  LDC 5 # load 5
-  LDC 7 # load 7
+  LDC 5 ; load 5
+  LDC 7 ; load 7
   LDC 0
 
-  if:
+  if
     LDC 5
     LDC 5
     LDC 1
 
-    if:
+    if
       LDC 2
       LDC 2
-    else:
+    else
       LDC 3
       LDC 3
     fi
 
-  else:
+  else
     LDC 4
     LDC 4
   fi
 
   LDC 1
 
-  if:
+  if
     LDC 9
     LDC 9
-  else:
+  else
     LDC 10
     LDC 10
   fi
@@ -35,8 +35,8 @@ def init 0
 
   add(2)
 
-# add 2 variables
+; add 2 variables
 def add 2
   LD 0 0
   LD 0 1
-  ADD # apply the internal add operation
+  ADD ; apply the internal add operation
