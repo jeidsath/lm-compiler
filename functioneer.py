@@ -1,5 +1,6 @@
 import inspect
 import re
+import util
 
 class Funct(object):
 
@@ -12,6 +13,7 @@ class Funct(object):
         self.lines.append(line)
 
     def is_fn_call(self, line):
+        line = util.real_strip(line)
         return re.match(r'(.*)\((.*)\)', line) is not None
 
     def parse_calls(self):
@@ -47,7 +49,7 @@ class FuncCall(object):
         self.call = call
 
     def parse(self):
-        sre = re.match(r'(.*)\((.*)\)', self.call)
+        sre = re.match(r'(.*)\((.*)\)', util.real_strip(self.call))
         fn_name = sre.group(1)
         args = sre.group(2)
         if args == "":

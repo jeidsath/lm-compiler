@@ -11,6 +11,9 @@ class Linenamer(object):
     def replace_all(self, ss):
         out = []
         for ll in self.lines:
+            if ll[0] == ';':
+                out.append(ll)
+                continue
             out.append(ll.replace(ss, '@' + ss + '@'))
         self.lines = out
 
@@ -26,7 +29,12 @@ class Linenamer(object):
                 out.append(ll)
         self.lines = out
 
+        self.changed.sort(key=len, reverse=True)
         for nn in self.changed:
             self.replace_all(nn)
+            nn2 = nn.replace('(', '___').replace(')', '---')
+            if nn2 != nn:
+                for ll in self.lines:
+                    ll.replace(nn, nn2)
 
         return self.lines

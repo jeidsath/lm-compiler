@@ -10,6 +10,5 @@ def filter_lines(lines):
     return out
 
 def real_strip(line):
-    line = re.sub(r'#.*', '', line)
     line = re.sub(r';.*', '', line)
     return line.strip()

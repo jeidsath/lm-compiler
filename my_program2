@@ -16,5 +16,3 @@ def sub 2
   LD 0 0
   LD 0 1
   SUB ; apply the internal sub operation
-LINENAME helloworld
-  LF helloworld
