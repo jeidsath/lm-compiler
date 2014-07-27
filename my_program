@@ -35,6 +35,11 @@ def init 0
 
   add(2)
 
+<$
+for ii in range(0,5):
+    print "LDC" + str(ii)
+$>
+
 ; add 2 variables
 def add 2
   LD 0 0
