@@ -18,6 +18,12 @@ def main():
 
     text = load(args.file)
 
+    text2 = []
+    for ll in text:
+        if util.real_strip(ll) != '':
+            text2.append(util.real_strip(ll))
+    text = text2
+
     text = Linenamer(text).linesnames_changed()
 
     #text = util.filter_lines(text)
