@@ -7,6 +7,7 @@ from output import Outputer
 from commenter import Commenter
 from linenamer import Linenamer
 from iffer import Iffer
+from macroer import Macroer
 import util
 
 
@@ -17,6 +18,9 @@ def main():
     #text = Commenter(load(args.file)).comments_removed()
 
     text = load(args.file)
+
+    if args.macrosFile:
+        text = Macroer(text, args.macrosFile).replaceMacros()
 
     text2 = []
     for ll in text:
@@ -46,6 +50,7 @@ def main():
 def parse():
     parser = argparse.ArgumentParser('compile lm')
     parser.add_argument('--file', required=True)
+    parser.add_argument('--macrosFile')
     return parser.parse_args()
 
 
