@@ -1,3 +1,5 @@
+import util
+
 class If(object):
     def __init__(self, number):
         self.number = number
@@ -10,10 +12,10 @@ class If(object):
     def add_line(self, line):
         self.lines_consumed += 1
 
-        if line.strip() == 'if':
+        if util.real_strip(line) == 'if':
             self.nested_ifs += 1
 
-        if line.strip() == 'fi':
+        if util.real_strip(line) == 'fi':
             if self.nested_ifs == 0:
                 return False
 
@@ -22,22 +24,22 @@ class If(object):
             return True
 
         if self.state == 'top':
-            if line.strip() == 'else':
+            if util.real_strip(line) == 'else':
                 if self.nested_ifs == 0:
                     self.state = 'bottom'
                     return True
-            self.top.append(line.strip())
-            if line.strip() == 'fi':
+            self.top.append(util.real_strip(line))
+            if util.real_strip(line) == 'fi':
               self.nested_ifs -= 1
             return True
 
         if self.state == 'bottom':
-            self.bottom.append(line.strip())
-            if line.strip() == 'fi':
+            self.bottom.append(util.real_strip(line))
+            if util.real_strip(line) == 'fi':
               self.nested_ifs -= 1
             return True
 
-        if line.strip() == 'fi':
+        if util.real_strip(line) == 'fi':
             self.nested_ifs -= 1
 
         return True
