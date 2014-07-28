@@ -90,20 +90,27 @@ class Iffer(object):
                 else:
                     out.append(ll)
 
-        for iffy in self.ifs:
-            newIffer = Iffer(iffy.top, self.counter)
-            newIffer.parse()
-            if len(newIffer.ifs) > 0:
-                self.counter += len(newIffer.ifs)
-                self.ifs.extend(newIffer.ifs)
-                iffy.top = newIffer.lines
+        ifs = len(self.ifs)
+        new_ifs = None
 
-        for iffy in self.ifs:
-            newIffer = Iffer(iffy.bottom, self.counter)
-            newIffer.parse()
-            if len(newIffer.ifs) > 0:
-                self.counter += len(newIffer.ifs)
-                self.ifs.extend(newIffer.ifs)
-                iffy.bottom = newIffer.lines
+        while new_ifs != 0:
+            new_ifs = 0
+            for iffy in self.ifs:
+                newIffer = Iffer(iffy.top, self.counter)
+                newIffer.parse()
+                if len(newIffer.ifs) > 0:
+                    self.counter += len(newIffer.ifs)
+                    self.ifs.extend(newIffer.ifs)
+                    iffy.top = newIffer.lines
+                    new_ifs += len(newIffer.ifs)
+
+            for iffy in self.ifs:
+                newIffer = Iffer(iffy.bottom, self.counter)
+                newIffer.parse()
+                if len(newIffer.ifs) > 0:
+                    self.counter += len(newIffer.ifs)
+                    self.ifs.extend(newIffer.ifs)
+                    iffy.bottom = newIffer.lines
+                    new_ifs += len(newIffer.ifs)
 
         self.lines = out
