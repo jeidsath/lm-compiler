@@ -20,6 +20,17 @@ def init 0
   else
     LDC 4
     LDC 4
+
+    LDC 1
+
+    if
+      LDC 99
+      LDC 99
+    else
+      LDC 101
+      LDC 101
+    fi
+
   fi
 
   LDC 1

@@ -98,4 +98,12 @@ class Iffer(object):
                 self.ifs.extend(newIffer.ifs)
                 iffy.top = newIffer.lines
 
+        for iffy in self.ifs:
+            newIffer = Iffer(iffy.bottom, self.counter)
+            newIffer.parse()
+            if len(newIffer.ifs) > 0:
+                self.counter += len(newIffer.ifs)
+                self.ifs.extend(newIffer.ifs)
+                iffy.bottom = newIffer.lines
+
         self.lines = out
